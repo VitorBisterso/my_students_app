@@ -7,7 +7,12 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint ./src"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test && npm run lint"
+    }
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
@@ -33,12 +38,20 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "husky": "^4.2.1",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.56.0",
     "prettier": "^1.19.1",
     "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!src/App.js"
+    ]
   }
 }
