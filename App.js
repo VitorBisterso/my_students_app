@@ -1,20 +1,22 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+import HomeScreen from './src/features/home';
 
-const Text = styled.Text`
-  font-size: 20px;
-`;
-
-const App = () => (
-  <Container>
-    <Text>My students app</Text>
-  </Container>
+const MainNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: HomeScreen
+    }
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false
+    }
+  }
 );
+
+const App = createAppContainer(MainNavigator);
 
 export default App;
