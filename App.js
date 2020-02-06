@@ -1,12 +1,20 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import styled from 'styled-components/native';
+
+const Container = styled.SafeAreaView`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Text = styled.Text`
+  font-size: 20px;
+`;
 
 const App = () => (
-  <SafeAreaView
-    style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
-  >
+  <Container>
     <Text>My students app</Text>
-  </SafeAreaView>
+  </Container>
 );
 
 export default App;
