@@ -1,9 +1,9 @@
-import types from './actionTypes';
+import Types from './actionTypes';
 
-const registerRequestAction = () => ({ type: types.REGISTER_REQUEST });
-const registerSuccessAction = () => ({ type: types.REGISTER_SUCCESS });
+const registerRequestAction = () => ({ type: Types.REGISTER_REQUEST });
+const registerSuccessAction = () => ({ type: Types.REGISTER_SUCCESS });
 const registerFailedAction = errorMessage => ({
-  type: types.REGISTER_FAILED,
+  type: Types.REGISTER_FAILED,
   payload: errorMessage
 });
 

@@ -1,6 +1,6 @@
 import types from './actionTypes';
 
-const initialState = {
+export const initialState = {
   isLogged: false,
   isLoading: false,
   error: false,

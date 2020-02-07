@@ -53,7 +53,9 @@
       "src/**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**",
-      "!src/App.js"
+      "!src/app.js",
+      "!src/appNavigator.js",
+      "!src/constants.js"
     ]
   }
 }
