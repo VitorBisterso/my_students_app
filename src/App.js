@@ -1,22 +1,14 @@
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import React from 'react';
+import { Provider } from 'react-redux';
 
-import HomeScreen from './features/home';
+import AppNavigator from './AppNavigator';
 
-const MainNavigator = createStackNavigator(
-  {
-    Home: {
-      screen: HomeScreen
-    }
-  },
-  {
-    headerMode: 'none',
-    navigationOptions: {
-      headerVisible: false
-    }
-  }
+import store from './store';
+
+const App = () => (
+  <Provider store={store}>
+    <AppNavigator />
+  </Provider>
 );
-
-const App = createAppContainer(MainNavigator);
 
 export default App;
