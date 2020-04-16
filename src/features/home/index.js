@@ -1,19 +1,26 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import { Image } from 'react-native';
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
+import Button from '../components/button';
+import Text from '../components/text';
 
-const Text = styled.Text`
-  font-size: 20px;
-`;
+import logo from '../../assets/img/logo.png';
+
+import styles from './styles';
+import StyleConstants from '../../styleConstants';
+
+const { Container, Row, Content } = styles;
+const { TITLE_SIZE } = StyleConstants.sizes;
 
 const Home = () => (
   <Container>
-    <Text>My students app</Text>
+    <Row>
+      <Image source={logo} />
+      <Text size={TITLE_SIZE}>My students</Text>
+    </Row>
+    <Content>
+      <Button text="Press me" onPress={() => console.log('Pressed')} />
+    </Content>
   </Container>
 );
 
