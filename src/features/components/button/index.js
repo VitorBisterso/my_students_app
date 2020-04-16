@@ -10,15 +10,16 @@ const { PRIMARY_COLOR, WHITE } = StyleConstants.colors;
 
 const StyledButton = styled.TouchableOpacity`
   background: ${props => (props.primary ? PRIMARY_COLOR : WHITE)};
-
-  padding: 5px 15px;
+  padding: 5px;
   border: 2px solid ${PRIMARY_COLOR};
   border-radius: 3px;
 `;
 
 const Button = ({ primary, text, onPress }) => (
   <StyledButton primary={primary} onPress={onPress}>
-    <Text color={primary ? WHITE : PRIMARY_COLOR}>{text}</Text>
+    <Text center color={primary ? WHITE : PRIMARY_COLOR}>
+      {text}
+    </Text>
   </StyledButton>
 );
 
