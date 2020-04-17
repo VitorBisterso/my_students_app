@@ -15,8 +15,13 @@ const Margin = styled.View`
 `;
 
 const Form = styled.View`
+  flex: 3;
+  justify-content: center;
+`;
+
+const ErrorsView = styled.View`
   flex: 1;
   justify-content: center;
 `;
 
-export { Container, Content, Margin, Form };
+export { Container, Content, Margin, Form, ErrorsView };
