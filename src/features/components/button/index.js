@@ -13,10 +13,11 @@ const StyledButton = styled.TouchableOpacity`
   padding: 5px;
   border: 2px solid ${PRIMARY_COLOR};
   border-radius: 3px;
+  margin: ${props => props.margin};
 `;
 
-const Button = ({ primary, text, onPress }) => (
-  <StyledButton primary={primary} onPress={onPress}>
+const Button = ({ primary, text, onPress, margin }) => (
+  <StyledButton primary={primary} onPress={onPress} margin={margin}>
     <Text center color={primary ? WHITE : PRIMARY_COLOR}>
       {text}
     </Text>
@@ -24,13 +25,15 @@ const Button = ({ primary, text, onPress }) => (
 );
 
 Button.defaultProps = {
-  primary: false
+  primary: false,
+  margin: '0px'
 };
 
 Button.propTypes = {
   primary: PropTypes.bool,
   text: PropTypes.string.isRequired,
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
+  margin: PropTypes.string
 };
 
 export default Button;

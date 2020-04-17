@@ -7,10 +7,9 @@ const Container = styled.SafeAreaView`
   background-color: white;
 `;
 
-const Row = styled.View`
+const Header = styled.View`
   flex: 2;
   width: 300px;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 `;
@@ -31,4 +30,4 @@ const Footer = styled.View`
   justify-content: flex-end;
 `;
 
-export default { Container, Row, Form, Footer, Margin };
+export default { Container, Header, Form, Footer, Margin };

@@ -4,7 +4,7 @@ const WHITE = 'rgba(255, 255, 255, 1)';
 const BLACK = 'rgba(29, 29, 29, 1)';
 
 const TITLE_SIZE = '22px';
-const DEFAULT_SIZE = '18px';
+const DEFAULT_SIZE = '16px';
 
 export default {
   colors: { PRIMARY_COLOR, BLACK, WHITE },

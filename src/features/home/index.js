@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image } from 'react-native';
+import { Image, TouchableOpacity } from 'react-native';
 
 import Button from '../components/button';
 import Text from '../components/text';
@@ -8,21 +8,20 @@ import TextInput from '../components/textInput';
 import logo from '../../assets/img/logo.png';
 
 import styles from './styles';
-import StyleConstants from '../../styleConstants';
 
-const { Container, Row, Form, Footer, Margin } = styles;
-const { TITLE_SIZE } = StyleConstants.sizes;
+const { Container, Header, Form, Footer, Margin } = styles;
 
-const Home = () => {
+// eslint-disable-next-line react/prop-types
+const Home = ({ navigation }) => {
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
 
   return (
     <Container>
-      <Row>
+      <Header>
         <Image source={logo} />
-        <Text size={TITLE_SIZE}>My students</Text>
-      </Row>
+        <Text size="30px">My students</Text>
+      </Header>
       <Form>
         <Margin>
           <TextInput
@@ -39,7 +38,18 @@ const Home = () => {
         />
       </Form>
       <Footer>
-        <Button primary text="Login" onPress={() => console.log('Pressed')} />
+        <Button
+          primary
+          text="Login"
+          onPress={() => console.log('Pressed')}
+          margin="0 0 10px 0"
+        />
+        {/* eslint-disable-next-line react/prop-types */}
+        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+          <Text size="12px" center>
+            Não tem uma conta? Cadastre-se
+          </Text>
+        </TouchableOpacity>
       </Footer>
     </Container>
   );
