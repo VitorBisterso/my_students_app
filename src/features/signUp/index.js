@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import AuthApi from '../auth/api';
 
 import BackButton from '../components/backButton';
 import TextInput from '../components/textInput';
 import Text from '../components/text';
 import Button from '../components/button';
 import Loading from '../components/loading';
+
+import { isEmailValid } from '../../utils';
 
 import StyleConstants from '../../styleConstants';
 import { Container, Content, Margin, Form, ErrorsView } from './styles';
@@ -65,16 +69,20 @@ const renderForm = (
   );
 };
 
-const renderErrorMessage = errorMessage =>
-  errorMessage && (
-    <Text center color="red">
-      {errorMessage}
+const renderMessage = (message, color) =>
+  message && (
+    <Text center color={color}>
+      {message}
     </Text>
   );
 
 const isFormValid = (email, password, registerToken, changeFormError) => {
   if (!email || !password || !registerToken) {
     changeFormError('Preencha todos os campos!');
+    return false;
+  }
+  if (!isEmailValid(email)) {
+    changeFormError('Digite um email válido!');
     return false;
   }
   if (password.length < 5) {
@@ -87,8 +95,10 @@ const isFormValid = (email, password, registerToken, changeFormError) => {
 
 // eslint-disable-next-line react/prop-types
 const SignUp = ({ navigation }) => {
-  const hasResquestError = useSelector(state => state.auth.error);
-  const isLoading = useSelector(state => state.auth.isLoading);
+  const dispatch = useDispatch();
+  const { error: hasResquestError, isLoading, hasCreated } = useSelector(
+    state => state.auth
+  );
 
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
@@ -96,12 +106,17 @@ const SignUp = ({ navigation }) => {
   const [formError, changeFormError] = useState('');
 
   const { BIGGEST } = StyleConstants.fonts;
+  const { GREEN, RED } = StyleConstants.colors;
 
-  let errorMessage;
-  if (hasResquestError) {
-    errorMessage = 'Erro ao criar usuário';
+  let message;
+  let color = RED;
+  if (hasCreated) {
+    message = 'Usuário criado com sucesso!';
+    color = GREEN;
+  } else if (hasResquestError) {
+    message = 'Erro ao criar usuário';
   } else if (formError) {
-    errorMessage = formError;
+    message = formError;
   }
 
   return isLoading ? (
@@ -123,13 +138,13 @@ const SignUp = ({ navigation }) => {
           formError,
           changeFormError
         )}
-        <ErrorsView>{renderErrorMessage(errorMessage)}</ErrorsView>
+        <ErrorsView>{renderMessage(message, color)}</ErrorsView>
         <Button
           primary
           text="Cadastrar"
           onPress={() => {
             if (isFormValid(email, password, registerToken, changeFormError)) {
-              console.log('Cadastrar');
+              dispatch(AuthApi.registerUser(email, password, registerToken));
             }
           }}
         />

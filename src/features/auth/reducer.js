@@ -1,10 +1,10 @@
 import types from './actionTypes';
 
 export const initialState = {
-  isLogged: false,
   isLoading: false,
   error: false,
-  errorMessage: ''
+  errorMessage: '',
+  hasCreated: false
 };
 
 export default function(state = initialState, action) {
@@ -12,12 +12,14 @@ export default function(state = initialState, action) {
     case types.REGISTER_REQUEST:
       return {
         ...state,
-        isLoading: true
+        isLoading: true,
+        hasCreated: false
       };
     case types.REGISTER_SUCCESS:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        hasCreated: true
       };
     case types.REGISTER_FAILED:
       return {

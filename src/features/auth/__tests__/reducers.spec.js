@@ -11,7 +11,8 @@ describe('Auth reducer', () => {
     };
     expect(reducer(undefined, action)).toEqual({
       ...initialState,
-      isLoading: true
+      isLoading: true,
+      hasCreated: false
     });
   });
   it('should handle REGISTER_SUCCESS', () => {
@@ -20,7 +21,8 @@ describe('Auth reducer', () => {
     };
     expect(reducer(undefined, action)).toEqual({
       ...initialState,
-      isLoading: false
+      isLoading: false,
+      hasCreated: true
     });
   });
   it('should handle REGISTER_FAILED', () => {

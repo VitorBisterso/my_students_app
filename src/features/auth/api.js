@@ -2,7 +2,7 @@ import Actions from './actions';
 import Constants from '../../constants';
 
 const registerUser = (email, password, registerToken) => dispatch => {
-  dispatch(Actions.registerRequestAction);
+  dispatch(Actions.registerRequestAction());
   const { API_URL, AUTH_URL } = Constants;
   const url = `${API_URL}${AUTH_URL}/register`;
   const requestParams = {
@@ -14,7 +14,7 @@ const registerUser = (email, password, registerToken) => dispatch => {
     body: JSON.stringify({
       email,
       password,
-      registerToken
+      token: registerToken
     })
   };
   fetch(url, requestParams)
