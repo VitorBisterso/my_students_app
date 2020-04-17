@@ -5,6 +5,7 @@ import BackButton from '../components/backButton';
 import TextInput from '../components/textInput';
 import Text from '../components/text';
 import Button from '../components/button';
+import Loading from '../components/loading';
 
 import StyleConstants from '../../styleConstants';
 import { Container, Content, Margin, Form, ErrorsView } from './styles';
@@ -18,43 +19,51 @@ const renderForm = (
   onChangeToken,
   formError,
   changeFormError
-) => (
-  <Form>
-    <TextInput
-      value={email}
-      onChangeText={value => {
-        if (formError) {
-          changeFormError('');
-        }
+) => {
+  const emailType = 'EMAIL';
+  const passwordType = 'PASSWORD';
+  const tokenType = 'TOKEN';
+
+  const onChangeText = (type, value) => {
+    if (formError) {
+      changeFormError('');
+    }
+    switch (type) {
+      case emailType:
         onChangeEmail(value);
-      }}
-      placeholder="Email"
-    />
-    <Margin />
-    <TextInput
-      value={password}
-      onChangeText={value => {
-        if (formError) {
-          changeFormError('');
-        }
+        break;
+      case passwordType:
         onChangePassword(value);
-      }}
-      placeholder="Senha"
-      isPassword
-    />
-    <Margin />
-    <TextInput
-      value={registerToken}
-      onChangeText={value => {
-        if (formError) {
-          changeFormError('');
-        }
+        break;
+      case tokenType:
+      default:
         onChangeToken(value);
-      }}
-      placeholder="Token"
-    />
-  </Form>
-);
+    }
+  };
+
+  return (
+    <Form>
+      <TextInput
+        value={email}
+        onChangeText={value => onChangeText(emailType, value)}
+        placeholder="Email"
+      />
+      <Margin />
+      <TextInput
+        value={password}
+        onChangeText={value => onChangeText(passwordType, value)}
+        placeholder="Senha"
+        isPassword
+      />
+      <Margin />
+      <TextInput
+        value={registerToken}
+        onChangeText={value => onChangeText(tokenType, value)}
+        placeholder="Token"
+      />
+    </Form>
+  );
+};
 
 const renderErrorMessage = errorMessage =>
   errorMessage && (
@@ -79,6 +88,7 @@ const isFormValid = (email, password, registerToken, changeFormError) => {
 // eslint-disable-next-line react/prop-types
 const SignUp = ({ navigation }) => {
   const hasResquestError = useSelector(state => state.auth.error);
+  const isLoading = useSelector(state => state.auth.isLoading);
 
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
@@ -94,7 +104,9 @@ const SignUp = ({ navigation }) => {
     errorMessage = formError;
   }
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Container>
       <BackButton navigation={navigation} />
       <Content>

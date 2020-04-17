@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import SignUp from '..';
+import Loading from '..';
 
 it('renders correctly', () => {
-  renderer.create(<SignUp navigation={{}} />);
+  renderer.create(<Loading />);
 });
