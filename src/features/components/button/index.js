@@ -6,19 +6,19 @@ import Text from '../text';
 
 import StyleConstants from '../../../styleConstants';
 
-const { PRIMARY_COLOR, WHITE } = StyleConstants.colors;
+const { PRIMARY_BLUE, WHITE } = StyleConstants.colors;
 
 const StyledButton = styled.TouchableOpacity`
-  background: ${props => (props.primary ? PRIMARY_COLOR : WHITE)};
+  background: ${props => (props.primary ? PRIMARY_BLUE : WHITE)};
   padding: 5px;
-  border: 2px solid ${PRIMARY_COLOR};
+  border: 2px solid ${PRIMARY_BLUE};
   border-radius: 3px;
   margin: ${props => props.margin};
 `;
 
 const Button = ({ primary, text, onPress, margin }) => (
   <StyledButton primary={primary} onPress={onPress} margin={margin}>
-    <Text center color={primary ? WHITE : PRIMARY_COLOR}>
+    <Text center color={primary ? WHITE : PRIMARY_BLUE}>
       {text}
     </Text>
   </StyledButton>

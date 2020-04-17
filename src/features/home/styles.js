@@ -30,4 +30,4 @@ const Footer = styled.View`
   justify-content: flex-end;
 `;
 
-export default { Container, Header, Form, Footer, Margin };
+export { Container, Header, Form, Footer, Margin };

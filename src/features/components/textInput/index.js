@@ -4,15 +4,15 @@ import styled from 'styled-components/native';
 
 import StyleConstants from '../../../styleConstants';
 
-const { PRIMARY_COLOR, WHITE, BLACK } = StyleConstants.colors;
-const { DEFAULT_SIZE } = StyleConstants.sizes;
+const { PRIMARY_BLUE, WHITE, BLACK } = StyleConstants.colors;
+const { DEFAULT } = StyleConstants.fonts;
 
 const StyledInput = styled.TextInput`
   background: ${WHITE};
   color: ${BLACK};
-  font-size: ${DEFAULT_SIZE};
+  font-size: ${DEFAULT};
   padding: 5px 15px;
-  border: 2px solid ${PRIMARY_COLOR};
+  border: 2px solid ${PRIMARY_BLUE};
   border-radius: 3px;
 `;
 
