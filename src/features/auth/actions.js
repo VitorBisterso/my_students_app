@@ -7,8 +7,21 @@ const registerFailedAction = errorMessage => ({
   payload: errorMessage
 });
 
+const loginRequestAction = () => ({ type: Types.LOGIN_REQUEST });
+const loginSuccessAction = token => ({
+  type: Types.LOGIN_SUCCESS,
+  payload: token
+});
+const loginFailedAction = errorMessage => ({
+  type: Types.LOGIN_FAILED,
+  payload: errorMessage
+});
+
 export default {
   registerRequestAction,
   registerSuccessAction,
-  registerFailedAction
+  registerFailedAction,
+  loginRequestAction,
+  loginSuccessAction,
+  loginFailedAction
 };

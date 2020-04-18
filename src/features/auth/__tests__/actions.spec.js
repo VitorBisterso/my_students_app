@@ -26,4 +26,29 @@ describe('Auth actions', () => {
       );
     });
   });
+
+  describe('Login', () => {
+    it('should create an action to init a request to login', () => {
+      const expectedAction = {
+        type: Types.LOGIN_REQUEST
+      };
+      expect(Actions.loginRequestAction()).toEqual(expectedAction);
+    });
+    it('should create an action to register a successful login request', () => {
+      const token = 'test token';
+      const expectedAction = {
+        type: Types.LOGIN_SUCCESS,
+        payload: token
+      };
+      expect(Actions.loginSuccessAction(token)).toEqual(expectedAction);
+    });
+    it('should create an action to register a failed login request', () => {
+      const errorMessage = 'Error during login';
+      const expectedAction = {
+        type: Types.LOGIN_FAILED,
+        payload: errorMessage
+      };
+      expect(Actions.loginFailedAction(errorMessage)).toEqual(expectedAction);
+    });
+  });
 });

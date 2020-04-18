@@ -4,7 +4,8 @@ export const initialState = {
   isLoading: false,
   error: false,
   errorMessage: '',
-  hasCreated: false
+  hasCreated: false,
+  token: ''
 };
 
 export default function(state = initialState, action) {
@@ -22,6 +23,24 @@ export default function(state = initialState, action) {
         hasCreated: true
       };
     case types.REGISTER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+        error: true,
+        errorMessage: action.payload
+      };
+    case types.LOGIN_REQUEST:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case types.LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        token: action.payload
+      };
+    case types.LOGIN_FAILED:
       return {
         ...state,
         isLoading: false,
