@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import HomeScreen from './features/home';
 import SignUpScreen from './features/signUp';
+import DashboardScreen from './features/dashboard';
 
 const MainNavigator = createStackNavigator(
   {
@@ -11,6 +12,9 @@ const MainNavigator = createStackNavigator(
     },
     SignUp: {
       screen: SignUpScreen
+    },
+    Dashboard: {
+      screen: DashboardScreen
     }
   },
   {

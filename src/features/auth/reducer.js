@@ -1,6 +1,7 @@
 import types from './actionTypes';
 
 export const initialState = {
+  isLogged: false,
   isLoading: false,
   error: false,
   errorMessage: '',
@@ -38,6 +39,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
+        isLogged: true,
         token: action.payload
       };
     case types.LOGIN_FAILED:

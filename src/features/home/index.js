@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
+import AuthApi from '../auth/api';
 
 import Button from '../components/button';
 import Text from '../components/text';
 import TextInput from '../components/textInput';
+import Loading from '../components/loading';
 
-import { isEmailValid } from '../../utils';
+import {
+  isEmailValid,
+  navigateToDashboard,
+  storeTokenAndCurrentDate,
+  isTokenValid
+} from '../../utils';
 
 import logo from '../../assets/img/logo.png';
 
@@ -72,7 +81,7 @@ const renderErrorMessage = message => {
   );
 };
 
-const renderFooter = (navigation, email, password, changeMessage) => {
+const renderFooter = (dispatch, navigation, email, password, changeMessage) => {
   const isFormValid = () => {
     if (!email || !password) {
       changeMessage('Preencha todos os campos para logar!');
@@ -87,7 +96,6 @@ const renderFooter = (navigation, email, password, changeMessage) => {
       return false;
     }
 
-    changeMessage(undefined);
     return true;
   };
 
@@ -100,7 +108,7 @@ const renderFooter = (navigation, email, password, changeMessage) => {
         text="Login"
         onPress={() => {
           if (isFormValid()) {
-            console.log('Logar');
+            dispatch(AuthApi.login(email, password));
           }
         }}
         margin="0 0 10px 0"
@@ -115,13 +123,45 @@ const renderFooter = (navigation, email, password, changeMessage) => {
   );
 };
 
+const navigateToDashboardIfTokenisValid = async navigation => {
+  const isValid = await isTokenValid();
+  if (isValid) {
+    navigateToDashboard(navigation);
+  }
+};
+
 // eslint-disable-next-line react/prop-types
 const Home = ({ navigation }) => {
+  useEffect(() => {
+    navigateToDashboardIfTokenisValid(navigation);
+  }, []);
+
+  const dispatch = useDispatch();
+  const { isLoading, errorMessage, isLogged, token } = useSelector(
+    state => state.auth
+  );
+
+  if (isLogged) {
+    storeTokenAndCurrentDate(token);
+    navigateToDashboard(navigation);
+  }
+
   const [email, onChangeEmail] = useState('');
   const [password, onChangePassword] = useState('');
   const [message, changeMessage] = useState(undefined);
 
-  return (
+  let msg;
+  if (errorMessage === 'Wrong password') {
+    msg = 'Senha incorreta!';
+  } else if (errorMessage && errorMessage.includes('found')) {
+    msg = 'Email não encontrado!';
+  } else if (message) {
+    msg = message;
+  }
+
+  return isLoading ? (
+    <Loading />
+  ) : (
     <Container>
       {renderHeader()}
       {renderForm(
@@ -129,11 +169,11 @@ const Home = ({ navigation }) => {
         onChangeEmail,
         password,
         onChangePassword,
-        message,
+        msg,
         changeMessage
       )}
-      {renderErrorMessage(message)}
-      {renderFooter(navigation, email, password, changeMessage)}
+      {renderErrorMessage(msg)}
+      {renderFooter(dispatch, navigation, email, password, changeMessage)}
     </Container>
   );
 };

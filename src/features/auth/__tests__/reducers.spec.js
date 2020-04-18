@@ -61,6 +61,7 @@ describe('Auth reducer', () => {
       expect(reducer(undefined, action)).toEqual({
         ...initialState,
         isLoading: false,
+        isLogged: true,
         token
       });
     });
