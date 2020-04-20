@@ -1,5 +1,5 @@
 import Actions from './actions';
-import Constants from '../../constants';
+import ApiConstants from '../../apiConstants';
 
 const defaultParams = {
   method: 'POST',
@@ -12,7 +12,8 @@ const defaultParams = {
 const registerUser = (email, password, registerToken) => dispatch => {
   dispatch(Actions.registerRequestAction());
 
-  const { API_URL, AUTH_URL } = Constants;
+  const { API_URL, AUTH_URL } = ApiConstants;
+
   const url = `${API_URL}${AUTH_URL}/register`;
   const requestParams = {
     ...defaultParams,
@@ -39,7 +40,8 @@ const registerUser = (email, password, registerToken) => dispatch => {
 const login = (email, password) => dispatch => {
   dispatch(Actions.loginRequestAction());
 
-  const { API_URL, AUTH_URL } = Constants;
+  const { API_URL, AUTH_URL } = ApiConstants;
+
   const url = `${API_URL}${AUTH_URL}/login`;
   const requestParams = {
     ...defaultParams,

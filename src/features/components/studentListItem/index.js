@@ -3,12 +3,12 @@ import { Image } from 'react-native';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 
-import Text from '../../../components/text';
+import Text from '../text';
 
-import user from '../../../../assets/img/user.png';
-import paperClip from '../../../../assets/img/paperClip.png';
+import user from '../../../assets/img/user.png';
+import paperClip from '../../../assets/img/paperClip.png';
 
-import StyleConstants from '../../../../styleConstants';
+import StyleConstants from '../../../styleConstants';
 
 const { WHITE, PRIMARY_BLUE, GREEN } = StyleConstants.colors;
 
