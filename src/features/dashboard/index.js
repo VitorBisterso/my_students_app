@@ -1,7 +1,18 @@
 import React from 'react';
 
-import Text from '../components/text';
+import StudentListItem from './components/studentListItem';
 
-const Dashboard = () => <Text>Students screen</Text>;
+import { Container } from './styles';
+
+const Dashboard = () => (
+  <Container>
+    <StudentListItem
+      name="Maria Aparecida"
+      classday="Wednesday"
+      level="Intermediate"
+      onPress={() => undefined}
+    />
+  </Container>
+);
 
 export default Dashboard;
