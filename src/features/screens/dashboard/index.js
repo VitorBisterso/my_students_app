@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StudentListItem from '../components/studentListItem';
+import StudentListItem from '../../components/studentListItem';
 
 import { Container } from './styles';
 

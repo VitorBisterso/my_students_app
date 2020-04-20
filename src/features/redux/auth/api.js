@@ -1,5 +1,5 @@
 import Actions from './actions';
-import ApiConstants from '../../apiConstants';
+import ApiConstants from '../../../apiConstants';
 
 const defaultParams = {
   method: 'POST',

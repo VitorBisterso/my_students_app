@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
-import AuthApi from '../auth/api';
+import AuthApi from '../../redux/auth/api';
 
-import Button from '../components/button';
-import Text from '../components/text';
-import TextInput from '../components/textInput';
-import Loading from '../components/loading';
+import Button from '../../components/button';
+import Text from '../../components/text';
+import TextInput from '../../components/textInput';
+import Loading from '../../components/loading';
 
 import {
   isEmailValid,
   navigateToDashboard,
   storeTokenAndCurrentDate,
   isTokenValid
-} from '../../utils';
+} from '../../../utils';
 
-import logo from '../../assets/img/logo.png';
+import logo from '../../../assets/img/logo.png';
 
-import StyleConstants from '../../styleConstants';
+import StyleConstants from '../../../styleConstants';
 import { Container, Header, Form, Footer, Margin } from './styles';
 
 const renderHeader = () => {

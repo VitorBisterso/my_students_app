@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import AuthApi from '../auth/api';
+import AuthApi from '../../redux/auth/api';
 
-import BackButton from '../components/backButton';
-import TextInput from '../components/textInput';
-import Text from '../components/text';
-import Button from '../components/button';
-import Loading from '../components/loading';
+import BackButton from '../../components/backButton';
+import TextInput from '../../components/textInput';
+import Text from '../../components/text';
+import Button from '../../components/button';
+import Loading from '../../components/loading';
 
-import { isEmailValid } from '../../utils';
+import { isEmailValid } from '../../../utils';
 
-import StyleConstants from '../../styleConstants';
+import StyleConstants from '../../../styleConstants';
 import { Container, Content, Margin, Form, ErrorsView } from './styles';
 
 const renderForm = (

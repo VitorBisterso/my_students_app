@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-import StyleConstants from '../../styleConstants';
+import StyleConstants from '../../../styleConstants';
 
 const { WHITE } = StyleConstants.colors;
 
