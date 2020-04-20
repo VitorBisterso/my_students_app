@@ -17,12 +17,14 @@ const StyledListItem = styled.TouchableOpacity`
   align-items: center;
   background-color: ${WHITE};
   elevation: 5;
-  padding: 15px;
+  padding: 15px 10px;
   border-radius: 3px;
+  margin: 15px 10px;
 `;
 
 const Info = styled.View`
-  margin-left: 20px;
+  margin-left: 10px;
+  max-width: 230px;
 `;
 
 const TopRight = styled.View`
@@ -38,7 +40,7 @@ const StudentListItem = ({ name, classday, level, onPress }) => (
       <Text color={PRIMARY_BLUE} numberOfLines={1}>
         {name}
       </Text>
-      <Text color={GREEN}>{`${classday} - ${level}`}</Text>
+      <Text color={GREEN} numberOfLines={1}>{`${level} - ${classday}`}</Text>
     </Info>
     <TopRight>
       <Image source={paperClip} />

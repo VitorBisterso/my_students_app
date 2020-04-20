@@ -59,7 +59,8 @@
       "!**/vendor/**",
       "!src/app.js",
       "!src/appNavigator.js",
-      "!src/constants.js"
+      "!src/apiConstants.js",
+      "!src/styleConstants.js"
     ]
   }
 }
